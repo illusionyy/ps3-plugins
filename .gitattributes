@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=crlf
+vendor/scetool/bin/scetool.exe filter=lfs diff=lfs merge=lfs -text
+vendor/scetool/bin/zlib1.dll filter=lfs diff=lfs merge=lfs -text
+vendor/scetool/bin/data/ldr_curves filter=lfs diff=lfs merge=lfs -text
+vendor/scetool/bin/data/vsh_curves filter=lfs diff=lfs merge=lfs -text
