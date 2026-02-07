@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game_patch", "game_patch\game_patch.vcxproj", "{3478F693-BCDD-49BC-9C27-4AE13436D73E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game_patch_vsh_data", "game_patch_vsh_data\game_patch_vsh_data.vcxproj", "{3FA0E643-5540-4CEA-8013-BB67B68EB81C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game_plugin_bootloader", "game_plugin_bootloader\game_plugin_bootloader.vcxproj", "{2C8A2548-89C1-4B54-A9E8-AC9B92E72DBF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmdline-tests", "cmdline-tests\cmdline-tests.vcxproj", "{B7C30586-24FA-45F0-A978-F56826B7AEB2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bin2c", "bin2c\bin2c.vcxproj", "{64726E03-817A-4732-9385-ED0AEB0BB0C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|PS3 = Debug|PS3
+		Release|PS3 = Release|PS3
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3478F693-BCDD-49BC-9C27-4AE13436D73E}.Debug|PS3.ActiveCfg = Debug|PS3
+		{3478F693-BCDD-49BC-9C27-4AE13436D73E}.Debug|PS3.Build.0 = Debug|PS3
+		{3478F693-BCDD-49BC-9C27-4AE13436D73E}.Release|PS3.ActiveCfg = Release|PS3
+		{3478F693-BCDD-49BC-9C27-4AE13436D73E}.Release|PS3.Build.0 = Release|PS3
+		{3FA0E643-5540-4CEA-8013-BB67B68EB81C}.Debug|PS3.ActiveCfg = Debug|PS3
+		{3FA0E643-5540-4CEA-8013-BB67B68EB81C}.Debug|PS3.Build.0 = Debug|PS3
+		{3FA0E643-5540-4CEA-8013-BB67B68EB81C}.Release|PS3.ActiveCfg = Release|PS3
+		{3FA0E643-5540-4CEA-8013-BB67B68EB81C}.Release|PS3.Build.0 = Release|PS3
+		{2C8A2548-89C1-4B54-A9E8-AC9B92E72DBF}.Debug|PS3.ActiveCfg = Debug|PS3
+		{2C8A2548-89C1-4B54-A9E8-AC9B92E72DBF}.Debug|PS3.Build.0 = Debug|PS3
+		{2C8A2548-89C1-4B54-A9E8-AC9B92E72DBF}.Release|PS3.ActiveCfg = Release|PS3
+		{2C8A2548-89C1-4B54-A9E8-AC9B92E72DBF}.Release|PS3.Build.0 = Release|PS3
+		{B7C30586-24FA-45F0-A978-F56826B7AEB2}.Debug|PS3.ActiveCfg = Debug|PS3
+		{B7C30586-24FA-45F0-A978-F56826B7AEB2}.Debug|PS3.Build.0 = Debug|PS3
+		{B7C30586-24FA-45F0-A978-F56826B7AEB2}.Release|PS3.ActiveCfg = Release|PS3
+		{B7C30586-24FA-45F0-A978-F56826B7AEB2}.Release|PS3.Build.0 = Release|PS3
+		{64726E03-817A-4732-9385-ED0AEB0BB0C8}.Debug|PS3.ActiveCfg = Debug|x64
+		{64726E03-817A-4732-9385-ED0AEB0BB0C8}.Debug|PS3.Build.0 = Debug|x64
+		{64726E03-817A-4732-9385-ED0AEB0BB0C8}.Release|PS3.ActiveCfg = Release|x64
+		{64726E03-817A-4732-9385-ED0AEB0BB0C8}.Release|PS3.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

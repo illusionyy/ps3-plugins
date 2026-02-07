@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|PS3">
+      <Configuration>Debug</Configuration>
+      <Platform>PS3</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|PS3">
+      <Configuration>Release</Configuration>
+      <Platform>PS3</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(VCTargetsPath12)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath12)</VCTargetsPath>
+    <ProjectGuid>{3FA0E643-5540-4CEA-8013-BB67B68EB81C}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>SNC</PlatformToolset>
+    <NoTocRestore>NoTocRestore1</NoTocRestore>
+    <ExceptionsAndRtti>NoExceptsNoRtti</ExceptionsAndRtti>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|PS3'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>SNC</PlatformToolset>
+    <NoTocRestore>NoTocRestore1</NoTocRestore>
+    <ExceptionsAndRtti>NoExceptsNoRtti</ExceptionsAndRtti>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(DebuggerFlavor)'=='PS3Debugger'" Label="OverrideDebuggerDefaults">
+    <!--LocalDebuggerCommand>$(TargetPath)</LocalDebuggerCommand-->
+    <!--LocalDebuggerCommandArguments></LocalDebuggerCommandArguments-->
+    <!--LocalDebuggerCommandLine>-r -e -m</LocalDebuggerCommandLine-->
+    <!--LocalRunCommandLine>-r</LocalRunCommandLine-->
+    <!--LocalTunerCommandLine></LocalTunerCommandLine-->
+    <!--LocalDebuggerFileServingDirectory>$(ProjectDir)</LocalDebuggerFileServingDirectory-->
+    <!--LocalDebuggerHomeDirectory>$(ProjectDir)</LocalDebuggerHomeDirectory-->
+    <!--LocalDebuggerProjectFile></LocalDebuggerProjectFile-->
+    <!--LocalDebuggerResetType>Soft</LocalDebuggerResetType-->
+    <!--LocalDebuggerClearTty>False</LocalDebuggerClearTty-->
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|PS3'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <TargetExt>.prx</TargetExt>
+    <OutDir>$(SolutionDir)\target_bin</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|PS3'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <TargetExt>.prx</TargetExt>
+    <OutDir>$(SolutionDir)\target_bin</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'">
+    <ClCompile>
+      <PreprocessorDefinitions>__PRX__;_VSHPRX;_DEBUG;LAUNCHER_DEBUG</PreprocessorDefinitions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SN_PS3_PATH)\ppu\include\sn;$(SCE_PS3_ROOT)\target\ppu\include;$(SCE_PS3_ROOT)\target\common\include;$(SolutionDir)vendor\VirtualShell\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStd>Cpp11</CppLanguageStd>
+      <InlineFunctionDebug>true</InlineFunctionDebug>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>-lsysutil_np_stub;-lnet_stub;-lnetctl_stub;$(SCE_PS3_ROOT)\target\ppu\lib\libc.a;$(SN_PS3_PATH)\ppu\lib\sn\libsn.a;$(SCE_PS3_ROOT)\target\ppu\lib\libm.a;$(SCE_PS3_ROOT)\target\ppu\lib\libio_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\liblv2_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libc_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libsysutil_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libsyscall.a;$(SCE_PS3_ROOT)\target\ppu\lib\hash\libsha256.a;-lvshtask_export_stub;-lpaf_export_stub;-lvshmain_export_stub;-lvshcommon_export_stub;-lstdc_export_stub;-lallocator_export_stub;-lsys_net_export_stub;-lxsetting_export_stub;-lsysPrxForUser_export_stub;-lsysutil_game_stub;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link>
+      <GenerateSnMapFile>FullMapFile</GenerateSnMapFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendor\VirtualShell\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFormat>PRXFile</OutputFormat>
+      <MapFileName>$(IntDir)$(TargetName).map</MapFileName>
+    </Link>
+    <PostBuildEvent>
+      <Command>call "$(SolutionDir)\shared\deploy.bat" "$(TargetDir)$(TargetName)$(TargetExt)" "$(TargetDir)$(TargetName).sprx" "$(SolutionDir)vendor\scetool\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Sign PRX (scetool)</Message>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)/host_bin/bin2c.exe -c $(SolutionDir)/target_bin/game_plugin_bootloader.sprx $(SolutionDir)/data/game_plugin_bootloader.sprx.inc.h game_plugin_bootloader_sprx_data
+$(SolutionDir)/host_bin/bin2c.exe -c $(SolutionDir)/data/game_plugins.yml $(SolutionDir)/data/game_plugins.yml.inc.h game_plugins_yml_data
+</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|PS3'">
+    <ClCompile>
+      <PreprocessorDefinitions>__PRX__;_VSHPRX;LAUNCHER_RELEASE</PreprocessorDefinitions>
+      <OptimizationLevel>Levels</OptimizationLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SN_PS3_PATH)\ppu\include\sn;$(SCE_PS3_ROOT)\target\ppu\include;$(SCE_PS3_ROOT)\target\common\include;$(SolutionDir)vendor\VirtualShell\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStd>Cpp11</CppLanguageStd>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <InlineFunctionDebug>true</InlineFunctionDebug>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>-lsysutil_np_stub;-lnet_stub;-lnetctl_stub;$(SCE_PS3_ROOT)\target\ppu\lib\libc.a;$(SN_PS3_PATH)\ppu\lib\sn\libsn.a;$(SCE_PS3_ROOT)\target\ppu\lib\libm.a;$(SCE_PS3_ROOT)\target\ppu\lib\libio_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\liblv2_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libc_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libsysutil_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libsyscall.a;$(SCE_PS3_ROOT)\target\ppu\lib\hash\libsha256.a;-lvshtask_export_stub;-lpaf_export_stub;-lvshmain_export_stub;-lvshcommon_export_stub;-lstdc_export_stub;-lallocator_export_stub;-lsys_net_export_stub;-lxsetting_export_stub;-lsysPrxForUser_export_stub;-lsysutil_game_stub;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link>
+      <MapFileName>$(IntDir)$(TargetName).map</MapFileName>
+      <InfoStripping>None</InfoStripping>
+      <DataStripping>None</DataStripping>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendor\VirtualShell\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFormat>PRXFile</OutputFormat>
+      <GenerateSnMapFile>FullMapFile</GenerateSnMapFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>call "$(SolutionDir)\shared\deploy.bat" "$(TargetDir)$(TargetName)$(TargetExt)" "$(TargetDir)$(TargetName).sprx" "$(SolutionDir)vendor\scetool\bin"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Sign PRX (scetool)</Message>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)/host_bin/bin2c.exe -c $(SolutionDir)/target_bin/game_plugin_bootloader.sprx $(SolutionDir)/data/game_plugin_bootloader.sprx.inc.h game_plugin_bootloader_sprx_data
+$(SolutionDir)/host_bin/bin2c.exe -c $(SolutionDir)/data/game_plugins.yml $(SolutionDir)/data/game_plugins.yml.inc.h game_plugins_yml_data
+</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\shared\my_memory.cpp" />
+    <ClCompile Include="Memory\Detour.cpp" />
+    <ClCompile Include="Memory\Memory.cpp" />
+    <ClCompile Include="prx.cpp" />
+    <ClCompile Include="Utils\SystemCalls.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\shared\GamePatchInfo.h" />
+    <ClInclude Include="..\shared\macros.h" />
+    <ClInclude Include="..\shared\memory.h" />
+    <ClInclude Include="Memory\Detour.hpp" />
+    <ClInclude Include="Memory\Memory.h" />
+    <ClInclude Include="Memory\Memory.hpp" />
+    <ClInclude Include="Utils\SystemCalls.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\game_plugin_bootloader\game_plugin_bootloader.vcxproj">
+      <Project>{2c8a2548-89c1-4b54-a9e8-ac9b92e72dbf}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Condition="'$(ConfigurationType)' == 'Makefile' and Exists('$(VCTargetsPath)\Platforms\$(Platform)\SCE.Makefile.$(Platform).targets')" Project="$(VCTargetsPath)\Platforms\$(Platform)\SCE.Makefile.$(Platform).targets" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

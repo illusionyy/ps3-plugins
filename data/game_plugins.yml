@@ -1,0 +1,4 @@
+- app: "all"
+  app_ver: "all"
+  plugins:
+    - "/dev_hdd0/game_patch.sprx"

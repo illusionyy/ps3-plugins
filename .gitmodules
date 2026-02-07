@@ -1,0 +1,3 @@
+[submodule "vendor/VirtualShell"]
+	path = vendor/VirtualShell
+	url = https://github.com/illusion0001/VirtualShell.git

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|PS3">
+      <Configuration>Debug</Configuration>
+      <Platform>PS3</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|PS3">
+      <Configuration>Release</Configuration>
+      <Platform>PS3</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(VCTargetsPath12)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath12)</VCTargetsPath>
+    <ProjectGuid>{2C8A2548-89C1-4B54-A9E8-AC9B92E72DBF}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>SNC</PlatformToolset>
+    <NoTocRestore>NoTocRestore1</NoTocRestore>
+    <ExceptionsAndRtti>NoExceptsNoRtti</ExceptionsAndRtti>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|PS3'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>SNC</PlatformToolset>
+    <NoTocRestore>NoTocRestore1</NoTocRestore>
+    <ExceptionsAndRtti>NoExceptsNoRtti</ExceptionsAndRtti>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(DebuggerFlavor)'=='PS3Debugger'" Label="OverrideDebuggerDefaults">
+    <!--LocalDebuggerCommand>$(TargetPath)</LocalDebuggerCommand-->
+    <!--LocalDebuggerCommandArguments></LocalDebuggerCommandArguments-->
+    <!--LocalDebuggerCommandLine>-r -e -m</LocalDebuggerCommandLine-->
+    <!--LocalRunCommandLine>-r</LocalRunCommandLine-->
+    <!--LocalTunerCommandLine></LocalTunerCommandLine-->
+    <!--LocalDebuggerFileServingDirectory>$(ProjectDir)</LocalDebuggerFileServingDirectory-->
+    <!--LocalDebuggerHomeDirectory>$(ProjectDir)</LocalDebuggerHomeDirectory-->
+    <!--LocalDebuggerProjectFile></LocalDebuggerProjectFile-->
+    <!--LocalDebuggerResetType>Soft</LocalDebuggerResetType-->
+    <!--LocalDebuggerClearTty>False</LocalDebuggerClearTty-->
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|PS3'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'">
+    <TargetExt>.prx</TargetExt>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)\target_bin</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|PS3'">
+    <TargetExt>.prx</TargetExt>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)\target_bin</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|PS3'">
+    <ClCompile>
+      <PreprocessorDefinitions>__PRX__;_USRPRX;_DEBUG;LAUNCHER_DEBUG</PreprocessorDefinitions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <InlineFunctionDebug>true</InlineFunctionDebug>
+      <CppLanguageStd>Cpp11</CppLanguageStd>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>../game_patch_vsh_data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>call "$(SolutionDir)\shared\deploy.bat" "$(TargetDir)$(TargetName)$(TargetExt)" "$(TargetDir)$(TargetName).sprx" "$(SolutionDir)vendor\scetool\bin"</Command>
+      <Message>Sign PRX (scetool)</Message>
+    </PostBuildEvent>
+    <Link>
+      <OutputFormat>PRXFile</OutputFormat>
+      <GenerateSnMapFile>FullMapFile</GenerateSnMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|PS3'">
+    <ClCompile>
+      <PreprocessorDefinitions>__PRX__;_USRPRX;LAUNCHER_RELEASE</PreprocessorDefinitions>
+      <OptimizationLevel>Levels</OptimizationLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <InlineFunctionDebug>true</InlineFunctionDebug>
+      <CppLanguageStd>Cpp11</CppLanguageStd>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>../game_patch_vsh_data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>call "$(SolutionDir)\shared\deploy.bat" "$(TargetDir)$(TargetName)$(TargetExt)" "$(TargetDir)$(TargetName).sprx" "$(SolutionDir)vendor\scetool\bin"</Command>
+      <Message>Sign PRX (scetool)</Message>
+    </PostBuildEvent>
+    <Link>
+      <OutputFormat>PRXFile</OutputFormat>
+      <GenerateSnMapFile>FullMapFile</GenerateSnMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\game_patch\lib\file.c" />
+    <ClCompile Include="..\game_patch\plugins.c" />
+    <ClCompile Include="..\game_patch_vsh_data\Memory\Memory.cpp" />
+    <ClCompile Include="..\game_patch_vsh_data\Utils\SystemCalls.cpp" />
+    <ClCompile Include="..\shared\GamePatchInfo.cpp" />
+    <ClCompile Include="..\shared\my_memory.cpp" />
+    <ClCompile Include="prx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\game_patch\lib\file.h" />
+    <ClInclude Include="..\game_patch\plugins.h" />
+    <ClInclude Include="..\shared\GamePatchInfo.hpp" />
+  </ItemGroup>
+  <Import Condition="'$(ConfigurationType)' == 'Makefile' and Exists('$(VCTargetsPath)\Platforms\$(Platform)\SCE.Makefile.$(Platform).targets')" Project="$(VCTargetsPath)\Platforms\$(Platform)\SCE.Makefile.$(Platform).targets" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
