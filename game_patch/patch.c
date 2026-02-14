@@ -193,7 +193,11 @@ static void process_patch_metadata_for_app_ver(PatchMetadata* meta,
 
     char settings_buf[MAX_PATH + 1] = {0};
     snprintf(settings_buf, _countof_1(settings_buf), GAME_PATCH_SETTINGS "/%s.bin", ctx->game_info.titleid);
-    meta->enabled = read_patch_state(settings_buf, meta->hash) == 1 && (g_args && (strstr(meta->app_bin, g_args->argv[0].c.lo) != 0));
+    const bool isExeMatched = (g_args && (strstr(g_args->argv[0].c.lo, meta->app_bin) != 0));
+    const bool readEnabled = read_patch_state(settings_buf, meta->hash) == 1;
+    print_bool(isExeMatched);
+    print_bool(readEnabled);
+    meta->enabled = readEnabled && isExeMatched;
     static const char* prx_list[] = {".prx", ".PRX", ".sprx", ".SPRX"};
     for (size_t i = 0; i < _countof(prx_list); i++)
     {
