@@ -1136,26 +1136,25 @@ static void apply_patch(const PatchEntry* entry)
         const char* value = entry->params[2];
         uintptr_t base = 0;  // TODO: Support prx
 
-        if (strcmp(type, "bytes8") == 0)
+        if (isZero(strncmp2(type, "bytes8")) || isZero(strncmp2(type, "byte")))
         {
             const uintptr_t addr = string_to_uint(address);
             const int8_t val = string_to_int(value);
             write_patch((void*)(base + addr), &val, sizeof(val));
         }
-        else if (strcmp(type, "bytes16") == 0)
+        else if (isZero(strncmp2(type, "bytes16")) || isZero(strncmp2(type, "be16")))
         {
             const uintptr_t addr = string_to_uint(address);
             const int16_t val = string_to_int(value);
-            printf("int16_t val %x\n", val);
             write_patch((void*)(base + addr), &val, sizeof(val));
         }
-        else if (strcmp(type, "bytes32") == 0)
+        else if (isZero(strncmp2(type, "bytes32")) || isZero(strncmp2(type, "be32")))
         {
             const uintptr_t addr = string_to_uint(address);
             const int32_t val = string_to_int(value);
             write_patch((void*)(base + addr), &val, sizeof(val));
         }
-        else if (strcmp(type, "bytes64") == 0)
+        else if (isZero(strncmp2(type, "bytes64")) || isZero(strncmp2(type, "be64")))
         {
             const uintptr_t addr = string_to_uint(address);
             const int64_t val = string_to_int(value);
