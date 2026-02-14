@@ -1231,7 +1231,7 @@ int run_patch(GamePatchInfo* game_info)
     if (ret == 0 && count > 0)
     {
         char buf[64 + 1] = {0};
-        snprintf(buf, _countof_1(buf), "Applied %ld patch%s", count, count > 0 ? "es" : "");
+        snprintf(buf, _countof_1(buf), "Applied %ld patch%s", count, count > 1 ? "es" : "");
         uint64_t write_count = 0;
         fileWrite2(GAME_PATCH_NOTIFY_MSG_FILE, buf, strlen(buf), &write_count);
         printf("%s\n", buf);
